@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
 using WebDriverManager;
@@ -44,5 +43,10 @@ public class DriverHelp {
         }
 
         return output;
+    }
+
+    public string getValue(IWebElement element) {
+        var JE = (IJavaScriptExecutor) WebDriver;
+        return JE.ExecuteScript("arguments[0].value", element).ToString();
     }
 }
