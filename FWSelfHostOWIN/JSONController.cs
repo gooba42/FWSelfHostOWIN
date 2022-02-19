@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using Newtonsoft.Json.Linq;
+using OWIN_Selenium;
 
 namespace FWSelfHostOWIN {
     public class JSONController : ApiController {
@@ -11,6 +14,14 @@ namespace FWSelfHostOWIN {
 
         // POST api/json 
         public JObject Post([FromBody] JObject value) {
+            DriverHelp driverhelp = new DriverHelp();
+            var myUrl = value["SITE"]["URL"].ToString();
+
+            foreach (var action in value["Actions"]) {
+                Console.WriteLine(action.ToString());
+            }
+
+        driverhelp.navigate(myUrl);
             return value;
 
         }
